@@ -1,0 +1,19 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    display: flex;
+    height: 100vh;
+}
+
+#list {
+    flex: 3;
+    background-color: aqua;
+}
+
+#form {
+    flex: 2;
+    background-color: beige;
+}
