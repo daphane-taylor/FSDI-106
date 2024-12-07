@@ -8,12 +8,12 @@ main {
     height: 100vh;
 }
 
-#list {
+.list {
     flex: 3;
-    background-color: aqua;
+    background-color: #8dd7d4;
 }
 
 #form {
     flex: 2;
-    background-color: beige;
+    background-color: #eeeeee;
 }
