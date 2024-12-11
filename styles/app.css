@@ -16,4 +16,9 @@ main {
 #form {
     flex: 2;
     background-color: #eeeeee;
+    padding: 5px;
+}
+
+.btn {
+    margin-left: 160px;
 }
