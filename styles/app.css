@@ -1,6 +1,11 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Candara Light', sans-serif;
 }
 
 main {
@@ -8,17 +13,70 @@ main {
     height: 100vh;
 }
 
+section h2 {
+    color: #FFFFFF;
+    font-variant: small-caps;
+    text-align: center;
+}
+
 .list {
     flex: 3;
-    background-color: #8dd7d4;
+    background-color: #000000;
+    padding: 20px;
+    overflow-y: auto;
 }
 
 #form {
     flex: 2;
-    background-color: #eeeeee;
+    background-color: #1d1d1d;
+    color: #FFFFFF;
+    padding: 20px;
+}
+
+.form-label {
+    font-variant: small-caps;
+}
+
+.task {
+    margin-bottom: 10px;
+    border-radius: 5px;
+    color: #FFFFFF;
+}
+
+.task-header {
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    color: #FFFFFF;
     padding: 5px;
 }
 
+.task-description {
+    margin-left: 30px;
+}
+
+.task-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    padding: 5px;
+    color: #FFFFFF;
+}
+
 .btn {
+    font-variant: small-caps;
     margin-left: 160px;
+}
+
+.btn-delete {
+    font-variant: small-caps;
+    margin-left: 10px;
+}
+
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+    }
 }

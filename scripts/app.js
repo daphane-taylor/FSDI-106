@@ -22,65 +22,76 @@ function saveTask() {
         contentType: "application/json",
         success: function(response) {
             console.log(response);
+            displayTask(taskToSave);
+            clearForm();
         },
-        error:function(error) {
+        error: function(error) {
             console.log(error);
+            alert("Error saving task. Please try again.");
         }
     });
-
-    //display the task
-    displayTask(taskToSave);
 }
 
 function displayTask(task) {
-
-    console.log(task);
-    let syntax = `<div class="task">
-    <h5>${task.title}</h5>
-    <p>${task.description}</p>
+    let syntax = `
+    <div class="task" style="background-color: #1d1d1d">
+        <div class="task-header">
+            <h5>${task.title}</h5>
+            <button class="btn btn-sm btn-light delete-task">Delete</button>
         </div>
-        <div><label>${task.status}</label></div>
-        <div><label>${task.date}</label>
-        <label>${task.budget}</label></div>`        
-        ;
-
+        <p class="task-description">${task.description}</p>
+        <div class="task-details">
+            <span class="badge bg-info">${task.status}</span>
+            <span>${task.date}</span>
+            <span>Budget: $${task.budget}</span>
+        </div>
+    </div>`;
+        
     $(".list").append(syntax);
 }
 
-function testRequest(){
-    $.ajax ({
-        type: "get",
-        url: "http://fsdiapi.azurewebsites.net",
-        success: function(Response){
-            console.log(Response);
-        },
-        error: function(error){
-            console.log(error);
-        }
-    });
-}
-
-function loadTask() {
+function loadTasks() {
     $.ajax({
-        type: "get",
+        type: "GET",
         url: "http://fsdiapi.azurewebsites.net/api/tasks",
         success: function(response) {
-            console.log(response);
             let data = JSON.parse(response);
-            console.log(data);
+        }});
+}
+
+function clearForm() {
+    $("#txtTitle").val('');
+    $("#txtDescription").val('');
+    $("#selColor").val('#000000');
+    $("#selDate").val('');
+    $("#selStatus").val('');
+    $("#numBudget").val('');
+}
+
+function deleteAllTasks() {
+    $.ajax({
+        type: "DELETE",
+        url: "http://fsdiapi.azurewebsites.net/api/tasks/clear",
+        success: function(response) {
+            console.log("All tasks deleted");
+            $(".list").empty();
         },
-         error: function(error){
+        error: function(error) {
             console.log(error);
-        }    
-})
+            alert("Error deleting tasks. Please try again.");
+        }
+    });
 }
 
 function init() {
     console.log("task manager");
-    //load data 
-    loadTask();
-    //hook the events
+    
+    // Load tasks when page initializes
+    loadTasks();
+    
+    // Hook events
     $("#btnSave").click(saveTask);
+    $("#btnDeleteAll").click(deleteAllTasks);
 }
 
 window.onload = init;
